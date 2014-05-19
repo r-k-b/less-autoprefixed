@@ -1,0 +1,20 @@
+{
+  "name": "less-autoprefixed",
+  "version": "0.0.1",
+  "description": "Combine Less and Autoprefixer for compressed, prefixed, sourcemap'd css from Less files.",
+  "main": "less-autoprefixed.js",
+  "dependencies": {
+    "autoprefixer": "~1.1.20140512",
+    "grunt": "~0.4.5",
+    "less": "~1.7.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "mocha": "^1.19.0"
+  },
+  "scripts": {
+    "test": "mocha mocha-tests"
+  },
+  "author": "Robert K. Bell",
+  "license": "MIT"
+}
