@@ -6,8 +6,6 @@ var my = {}; // object to export
 var less = require('less');
 var autop = require('autoprefixer');
 
-var inputLess = '/* comment here */\n.testclass{display:flex;}\n';
-
 var lessParser = new (less.Parser)({
     // put options here - but where are they doc'd?
 });
@@ -28,8 +26,25 @@ my.basicChain = function (input, callback) {
 };
 
 
+my.basicLessWithSourcemap = function (input, callback) {
+    lessParser.parse(input, function (err, tree) {
+            if (err) {
+                return callback(err, null)
+            }
+            var css = tree.toCSS({
+                compress    : false,
+                sourceMap   : true,
+                sourceMapURL: 'testdata.css.map'
+            });
+//            return callback(null, autop.process(css).css);
+            return callback(null, css);
+        }
+    )
+};
+
+
 if (require.main === module) { // Don't run this if require()'d.
-    my.basicChain(inputLess, function (err, data) {
+    my.basicLessWithSourcemap('/* comment here */\n.testclass{display:flex;}\n', function (err, data) {
         if (err) {
             throw(err);
         }

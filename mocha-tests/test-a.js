@@ -26,5 +26,24 @@ describe('basic-test', function () {
                 done();
             }
         );
+    });
+
+    it('should produce the expected unminified output, with a source map', function (done) {
+        lap.basicLessWithSourcemap(
+            '/* comment here */\n.testclass{display:flex;}\n',
+            function (err, data) {
+                if (err) throw err;
+
+                assert.equal(
+                    data,
+                        '/* comment here */\n' +
+                        '.testclass {\n' +
+                        '  display: flex;\n' +
+                        '}\n' +
+                        '/*# sourceMappingURL=testdata.css.map */'
+                );
+                done();
+            }
+        );
     })
 });
