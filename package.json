@@ -5,7 +5,6 @@
   "main": "less-autoprefixed.js",
   "dependencies": {
     "autoprefixer": "~1.1.20140512",
-    "grunt": "~0.4.5",
     "less": "~1.7.0"
   },
   "devDependencies": {
