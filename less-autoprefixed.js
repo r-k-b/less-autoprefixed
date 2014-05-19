@@ -32,9 +32,11 @@ my.basicLessWithSourcemap = function (input, callback) {
                 return callback(err, null)
             }
             var css = tree.toCSS({
-                compress    : false,
-                sourceMap   : true,
-                sourceMapURL: 'testdata.css.map'
+                compress         : false,
+                sourceMap        : true,
+                sourceMapURL     : 'testdata.css.map',
+                sourceMapFilename : 'testdata.css',
+                sourceMapRootpath: '../'
             });
 //            return callback(null, autop.process(css).css);
             return callback(null, css);
