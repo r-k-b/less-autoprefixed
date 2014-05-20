@@ -5,7 +5,7 @@
 var assert = require('assert');
 var lap = require('../less-autoprefixed');
 
-describe('basic-test', function () {
+describe('basicChain test', function () {
 
     it('should produce the expected unminified output', function (done) {
         lap.basicChain(
@@ -27,7 +27,9 @@ describe('basic-test', function () {
             }
         );
     });
+});
 
+describe('basic source map functionality', function () {
     it('should produce the expected unminified output, with a source map', function (done) {
         lap.basicLessWithSourcemap(
             '/* comment here */\n.testclass{display:flex;}\n',
@@ -45,7 +47,7 @@ describe('basic-test', function () {
                 done();
             }
         );
-    })
+    });
 
     it('should produce the expected source map', function (done) {
         lap.basicLessWithSourcemap(
