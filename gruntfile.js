@@ -11,7 +11,8 @@ module.exports = function (grunt) {
             test: {
                 options: {
                     reporter: 'spec',
-                    clearRequireCache: true
+                    clearRequireCache: true,
+                    colors: true
                 },
                 src: ['mocha-tests/**/*.js']
             }
