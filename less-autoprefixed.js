@@ -6,9 +6,6 @@ var my = {}; // object to export
 var less = require('less');
 var autop = require('autoprefixer');
 
-var lessParser = new (less.Parser)({
-    // put options here - but where are they doc'd?
-});
 
 /**
  * Convert less to css to prefixed css. No minification or file writing.
@@ -16,6 +13,10 @@ var lessParser = new (less.Parser)({
  * @param callback
  */
 my.basicChain = function (input, callback) {
+    var lessParser = new (less.Parser)({
+        // put options here - but where are they doc'd?
+    });
+
     lessParser.parse(input, function (err, tree) {
         if (err) {
             return callback(err, null)
@@ -27,6 +28,10 @@ my.basicChain = function (input, callback) {
 
 
 my.basicLessWithSourcemap = function (input, callback) {
+    var lessParser = new (less.Parser)({
+        // put options here - but where are they doc'd?
+    });
+
     lessParser.parse(input, function (err, tree) {
             if (err) {
                 return callback(err, null)
@@ -34,8 +39,11 @@ my.basicLessWithSourcemap = function (input, callback) {
             var css = tree.toCSS({
                 compress         : false,
                 sourceMap        : true,
+                writeSourceMap   : function (thing) {
+                    console.log(thing)
+                },
                 sourceMapURL     : 'testdata.css.map',
-                sourceMapFilename : 'testdata.css',
+                sourceMapFilename: 'testdata.css',
                 sourceMapRootpath: '../'
             });
 //            return callback(null, autop.process(css).css);
