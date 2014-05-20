@@ -36,18 +36,20 @@ my.basicLessWithSourcemap = function (input, callback) {
             if (err) {
                 return callback(err, null)
             }
-            var css = tree.toCSS({
+            var data = {};
+            data.css = tree.toCSS({
                 compress         : false,
                 sourceMap        : true,
                 writeSourceMap   : function (thing) {
-                    console.log(thing)
+                    // check out node_modules/less/lib/less/source-map-output.js:127
+                    data.sourceMap = thing;
                 },
                 sourceMapURL     : 'testdata.css.map',
                 sourceMapFilename: 'testdata.css',
                 sourceMapRootpath: '../'
             });
 //            return callback(null, autop.process(css).css);
-            return callback(null, css);
+            return callback(null, data);
         }
     )
 };

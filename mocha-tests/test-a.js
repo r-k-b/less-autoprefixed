@@ -35,12 +35,27 @@ describe('basic-test', function () {
                 if (err) throw err;
 
                 assert.equal(
-                    data,
+                    data.css,
                         '/* comment here */\n' +
                         '.testclass {\n' +
                         '  display: flex;\n' +
                         '}\n' +
                         '/*# sourceMappingURL=testdata.css.map */'
+                );
+                done();
+            }
+        );
+    })
+
+    it('should produce the expected source map', function (done) {
+        lap.basicLessWithSourcemap(
+            '/* comment here */\n.testclass{display:flex;}\n',
+            function (err, data) {
+                if (err) throw err;
+
+                assert.equal(
+                    data.sourceMap,
+                        '{"version":3,"sources":["../input"],"names":[],"mappings":";AACA;EAAW,aAAA"}'
                 );
                 done();
             }
